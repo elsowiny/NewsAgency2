@@ -70,8 +70,8 @@ public class NewsAgency implements Subject {
     
     
     @Override
-    public String getObservers(){
-        return "to-do";
+    public List<Observer> getObservers(){
+        return this.subscribers;
     }
     
     
@@ -79,6 +79,15 @@ public class NewsAgency implements Subject {
     public void notifyAllObservers(){
         for(Observer observer: subscribers){
             observer.update(this);
+        }
+    }
+    
+    //for db use
+    
+    public void notifyAllObservers(List<Subscriber> subscribers){
+    	
+        for(Subscriber sub: subscribers){
+            sub.update(this);
         }
     }
     

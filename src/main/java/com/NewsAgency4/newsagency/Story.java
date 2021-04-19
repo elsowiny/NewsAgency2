@@ -16,24 +16,16 @@ import javax.persistence.Table;
  *
  * @author elsow
  */
-
-@Entity
 @Table(name="stories")
 public class Story {
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="idstories")
 	int idstories;
     
-	@Column(name="headline")
     String headline;
     
-	//actual story
-	@Column(name="stories")
+	
     String stories;
     
-	@Column(name="agencyId")
     int agencyId;
     
     String agencyreporting;

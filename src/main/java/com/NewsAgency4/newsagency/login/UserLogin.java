@@ -29,11 +29,11 @@ public class UserLogin extends DBLogin{
 			ResultSet rs = stmt.executeQuery(SQL);
 			if(rs.next()) { //succesful find
 				System.out.println("Sucessful login");
-				String user = rs.getString("username");
-				String userpass = rs.getString("password");
+				//String user = rs.getString("username");
+				//String userpass = rs.getString("password");
 				int id = rs.getInt("id");
 				
-				System.out.println("The id is " + id);
+				//System.out.println("The id is " + id);
 				this.id = id;
 				
 				Subscriber sessionLogin = new Subscriber(username, password, id);

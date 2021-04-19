@@ -5,6 +5,8 @@
  */
 package com.NewsAgency4.newsagency;
 
+import java.util.List;
+
 /**
  *
  * @author elsow
@@ -15,7 +17,7 @@ public interface Subject {
 	  
 	public void notifyAllObservers();
 	    
-	public String getObservers();
+	public List<Observer> getObservers();
 	
 	public void removeObserver(Observer observer);
 

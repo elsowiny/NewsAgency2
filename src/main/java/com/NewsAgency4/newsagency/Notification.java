@@ -15,14 +15,20 @@ public class Notification {
 	
 	String notification;
 	
-	int subsciberId;
+	int subscriberId;
 	
-	public Notification(String nameOfAgency) {
-		notification = nameOfAgency + "Just released a new article";
+	int read = 0;
+	
+	public Notification(String nameOfAgency, int subscriberId) {
+		notification = nameOfAgency + " Just released a new article";
+		this.subscriberId = subscriberId;
 		
 	}
 	
 	public String getNotification() {
 		return notification;
+	}
+	public int getSubId() {
+		return this.subscriberId;
 	}
 }

@@ -11,5 +11,5 @@ package com.NewsAgency4.newsagency;
  */
 public interface Observer {
 
-    public abstract void update(NewsAgency agency);
+	public abstract void update(NewsAgency newsAgency);
 }

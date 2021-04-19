@@ -5,6 +5,9 @@
  */
 package com.NewsAgency4.newsagency;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -58,21 +61,48 @@ public class Subscriber implements Observer{
     }
     
 
-    public void update(NewsAgency agency){
-       
-        
-        String agencyName = agency.getName();
-        Notification tempNotification = new Notification(agencyName);
-        
-      
-        
-      
-        notifications.add(tempNotification);
-        
-    }
     
     public int getId() {
     	return id;
     }
+    
+    public String getName() {
+    	return username;
+    }
+
+
+	@Override
+	public void update(NewsAgency newsAgency) {
+		// TODO Auto-generated method stub
+		//public Notification(String nameOfAgency, int subscriberId)
+		DBConnection conn = new DBConnection();
+        Connection con = conn.connectDB();
+        System.out.println("Preparing to create notification");
+        Notification newNotification = new Notification(newsAgency.getName(), this.getId());
+
+        System.out.println("notification is " + newNotification.notification + "and agency " + newsAgency.getName()
+        + 
+        "subscriber id is + " + this.getId() );
+        //String sql = "INSERT INTO `notification` (notification, subscriberId, 'read') VALUES(?,?,?)";
+        
+        try{
+        	//PreparedStatement preparedStatement = con.prepareStatement(sql);
+        	PreparedStatement preparedStatement = con.prepareStatement(
+        			"INSERT INTO `notification` (notification, subscriberId, hasread) VALUES(?,?,?)"
+        			);
+        	preparedStatement.setString(1, newNotification.getNotification() + "");
+        	preparedStatement.setInt(2, newNotification.getSubId());
+        	preparedStatement.setInt(3, 0);
+        	preparedStatement.executeUpdate(); 
+        	System.out.println("Notification for subscriber id " + newNotification.getSubId() + "added") ;
+      
+      }catch(SQLException s){
+      System.out.println(s);
+      }
+		
+	}
+
+
+	
     
 }
